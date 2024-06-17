@@ -21,8 +21,14 @@ const store = makeInMemoryStore({
 
 const config = require("./config.json");
 const botNumber = config.botNumber;
-const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-const question = (text) => new Promise((resolve) => rl.question("Masukkan nomor bot whatsapp: ", resolve));
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+const question = (text) =>
+  new Promise((resolve) =>
+    rl.question("Masukkan nomor bot whatsapp: ", resolve)
+  );
 
 async function startWhatsapp() {
   const { state, saveCreds } = await useMultiFileAuthState("session");
@@ -40,11 +46,15 @@ async function startWhatsapp() {
     markOnlineOnConnect: true,
     browser: ["Ubuntu", "Chrome", "20.0.04"],
   });
-  
-  if (!botNumber) return console.log(chalk.redBright("Error:"), chalk.whiteBright("Masukkan nomor bot di config.json dengan awalan 628xx"));
+
+  if (!botNumber)
+    return console.log(
+      chalk.redBright("Error:"),
+      chalk.whiteBright("Masukkan nomor bot di config.json dengan awalan 628xx")
+    );
   if (!wann.authState.creds.registered) {
     const phoneNumber = await question();
-	let code = await wann.requestPairingCode(phoneNumber);
+    let code = await wann.requestPairingCode(phoneNumber);
     code = code?.match(/.{1,4}/g)?.join("-") || code;
     console.log(chalk.greenBright(code));
   }
@@ -139,7 +149,10 @@ async function startWhatsapp() {
         wann.end("[Disconnected] " + reason + "|" + connection);
       }
     } else if (connection === "open") {
-      console.log(chalk.greenBright("[Connected]"), chalk.whiteBright(botNumber + "@s.whatsapp.net"));
+      console.log(
+        chalk.greenBright("[Connected]"),
+        chalk.whiteBright(botNumber + "@s.whatsapp.net")
+      );
     }
   });
 
@@ -150,15 +163,23 @@ async function startWhatsapp() {
 
   wann.downloadMediaMessage = async (type_file, path_file) => {
     if (type_file === "image") {
-	  var stream = await downloadContentFromMessage(m.message.imageMessage || m.message.extendedTextMessage?.contextInfo.quotedMessage.imageMessage, "image");
-	  let buffer = Buffer.from([]);
-	  for await (const chunk of stream) {
+      var stream = await downloadContentFromMessage(
+        m.message.imageMessage ||
+          m.message.extendedTextMessage?.contextInfo.quotedMessage.imageMessage,
+        "image"
+      );
+      let buffer = Buffer.from([]);
+      for await (const chunk of stream) {
         buffer = Buffer.concat([buffer, chunk]);
       }
       fs.writeFileSync(path_file, buffer);
       return path_file;
     } else if (type_file === "video") {
-      var stream = await downloadContentFromMessage(m.message.videoMessage || m.message.extendedTextMessage?.contextInfo.quotedMessage.videoMessage, "video");
+      var stream = await downloadContentFromMessage(
+        m.message.videoMessage ||
+          m.message.extendedTextMessage?.contextInfo.quotedMessage.videoMessage,
+        "video"
+      );
       let buffer = Buffer.from([]);
       for await (const chunk of stream) {
         buffer = Buffer.concat([buffer, chunk]);
@@ -166,7 +187,12 @@ async function startWhatsapp() {
       fs.writeFileSync(path_file, buffer);
       return path_file;
     } else if (type_file === "sticker") {
-      var stream = await downloadContentFromMessage(m.message.stickerMessage || m.message.extendedTextMessage?.contextInfo.quotedMessage.stickerMessage, "sticker");
+      var stream = await downloadContentFromMessage(
+        m.message.stickerMessage ||
+          m.message.extendedTextMessage?.contextInfo.quotedMessage
+            .stickerMessage,
+        "sticker"
+      );
       let buffer = Buffer.from([]);
       for await (const chunk of stream) {
         buffer = Buffer.concat([buffer, chunk]);
@@ -174,7 +200,11 @@ async function startWhatsapp() {
       fs.writeFileSync(path_file, buffer);
       return path_file;
     } else if (type_file === "audio") {
-      var stream = await downloadContentFromMessage(m.message.audioMessage || m.message.extendedTextMessage?.contextInfo.quotedMessage.audioMessage, "audio");
+      var stream = await downloadContentFromMessage(
+        m.message.audioMessage ||
+          m.message.extendedTextMessage?.contextInfo.quotedMessage.audioMessage,
+        "audio"
+      );
       let buffer = Buffer.from([]);
       for await (const chunk of stream) {
         buffer = Buffer.concat([buffer, chunk]);
