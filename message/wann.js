@@ -9,8 +9,8 @@ const rh = require("api-wann");
 const util = require("util");
 const { exec } = require("child_process");
 
-const { color } = require("../lib/func");
-const { runtime, toUpper, getBuffer } = require("../lib/function");
+const { color, sleep } = require("../lib/func");
+const { runtime, toUpper, getBuffer, shuffle } = require("../lib/function");
 
 let mess = JSON.parse(fs.readFileSync("./message/mess.json"));
 
@@ -129,6 +129,7 @@ module.exports = async (wann, m) => {
           other: [
             "jadwalbola",
             "infogempa",
+            "wikimedia",
             "covidworld",
             "covidindo",
             "covidcountry",
@@ -314,6 +315,43 @@ module.exports = async (wann, m) => {
           { image: { url: data.result[0].image }, caption: txt },
           { quoted: m }
         );
+        break;
+      case "googleimage":
+        if (!q) return reply(`Contoh: ${prefix + command} Jokowi`);
+        var response = await rh.googleImage(q);
+        var data = response.result;
+        var tampung = await shuffle(data, 5); // Mau ambil 5 saja
+        if (!tampung) return reply("Result not found !");
+        await wann.sendMessage(
+          from,
+          { image: { url: tampung[0] } },
+          { quoted: m }
+        );
+        await sleep(1000);
+        await wann.sendMessage(
+          from,
+          { image: { url: tampung[1] } },
+          { quoted: m }
+        );
+        await sleep(1000);
+        await wann.sendMessage(
+          from,
+          { image: { url: tampung[2] } },
+          { quoted: m }
+        );
+        await sleep(1000);
+        await wann.sendMessage(
+          from,
+          { image: { url: tampung[3] } },
+          { quoted: m }
+        );
+        await sleep(1000);
+        await wann.sendMessage(
+          from,
+          { image: { url: tampung[4] } },
+          { quoted: m }
+        );
+        await sleep(1000);
         break;
       case "ttp":
         if (!q) return reply(`Contoh: ${prefix + command} ${botName}`);
