@@ -1,0 +1,35 @@
+{
+  "name": "RH-BOT",
+  "version": "2.0.0",
+  "description": "Whatsapp Bot Baileys",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "nodemon --exec \"cls && node .\" --ignore \"*.json\" --ignore \"test/*.js\"",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erhabot/base-api-wann.git"
+  },
+  "keywords": [
+    "whatsapp",
+    "bot",
+	"baileys",
+	"api-wann"
+  ],
+  "author": "W a N",
+  "license": "MIT",
+  "dependencies": {
+    "@adiwajshing/keyed-db": "^0.2.4",
+    "@hapi/boom": "^10.0.1",
+    "@whiskeysockets/baileys": "latest",
+    "api-wann": "latest",
+    "awesome-phonenumber": "^2.64.0",
+    "chalk": "^4.1.2",
+    "fluent-ffmpeg": "^2.1.3",
+    "pino": "^7.0.5"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "wait": "*Wait a minute !!*",
+  "error": {
+    "Iv": "Link yang kamu berikan tidak valid.",
+    "api": "Maaf terjadi kesalahan."
+  },
+  "OnlyGrup": "Perintah ini hanya bisa digunakan di grup",
+  "OnlyPM": "Perintah ini hanya bisa digunakan di private message",
+  "GrupAdmin": "Perintah ini hanya bisa digunakan oleh Admin Grup",
+  "BotAdmin": "Bot Harus menjadi admin",
+  "OnlyOwner": "Perintah ini hanya dapat digunakan oleh Owner bot",
+  "OnlyPrem": "Perintah ini khusus member premium",
+  "bann": "Sorry kamu di banned",
+  "doaHarian": {
+    "list": "1. Doa Sebelum Makan\n2. Doa Sesudah Makan\n3. Doa Sesudah Minum\n4. Doa Ketika Makan Lupa Membaca Doa\n5. Doa Sebelum Tidur\n6. Doa Ketika Mimpi Buruk\n7. Doa Ketika Mendapat Mimpi Baik\n8. Doa Bangun Tidur\n9. Doa Masuk Kamar Mandi Atau Toilet\n10. Doa Istinja\n11. Doa Keluar Kamar Mandi Atau Toilet\n12. Doa Menjelang Sholat Shubuh\n13. Doa Menyambut Pagi hari\n14. Doa Menyambut Sore Hari\n15. Doa Ketika Bercermin\n16. Doa Masuk Rumah\n17. Doa Keluar Rumah / Doa Bepergian\n18. Doa Memakai Pakaian\n19. Doa Memakai Pakaian Baru\n20. Doa Melepas Pakaian\n21. Doa Memohon Ilmu Yang Bermanfaat\n22. Doa Sebelum Belajar\n23. Doa Sesudah Belajar\n24. Doa Berpergian\n25. Doa Naik Kendaraan\n26. Doa Naik Kapal\n27. Doa Ketika Sampai di Tempat Tujuan\n28. Doa Ketika Menuju Masjid\n29. Doa Masuk Masjid\n30. Doa Keluar Masjid\n31. Doa Akan Membaca Al-Qur'an\n32. Doa Setelah Membaca Al-Qur'an\n33. Doa Niat Wudhu\n34. Doa Setelah Wudhu\n35. Doa akan Mandi"
+  },
+  "imamHadist": {
+    "list": "➢ abu-daud (1 - 4398)\n➢ ahmad (1 - 12)\n➢ bukhari (1 - 7008)\n➢ darimi (1 - 3349)\n➢ ibnu-majah (1 - 4331)\n➢ malik (1 - 1594)\n➢ muslim (1 - 1899)\n➢ nasai (1 - 5499)\n➢ tirmidzi (1 - 3891)"
+  }
+}
