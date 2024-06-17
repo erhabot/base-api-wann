@@ -124,7 +124,7 @@ module.exports = async (wann, m) => {
             "hadist",
             "kisahnabi",
           ],
-          unduh: ["tiktok", "igstory", "threads"],
+          unduh: ["tiktok", "igstory", "threads", "pinterest"],
           owner: ["runtime", "eval", "exec"],
           other: [
             "jadwalbola",
@@ -536,6 +536,42 @@ module.exports = async (wann, m) => {
             { quoted: m }
           );
         }
+        break;
+      case "pinterest":
+        if (!q) return reply(`Contoh: ${prefix + command} Spiderman`);
+        var response = await rh.pinterest(q);
+        var data = response.result;
+        var tampung = await shuffle(data, 5); // ambil 5 saja
+        if (!tampung) return reply(mess.error.api);
+        await wann.sendMessage(
+          from,
+          { image: { url: tampung[0] } },
+          { quoted: m }
+        );
+        await sleep(1000);
+        await wann.sendMessage(
+          from,
+          { image: { url: tampung[1] } },
+          { quoted: m }
+        );
+        await sleep(1000);
+        await wann.sendMessage(
+          from,
+          { image: { url: tampung[2] } },
+          { quoted: m }
+        );
+        await sleep(1000);
+        await wann.sendMessage(
+          from,
+          { image: { url: tampung[3] } },
+          { quoted: m }
+        );
+        await sleep(1000);
+        await wann.sendMessage(
+          from,
+          { image: { url: tampung[4] } },
+          { quoted: m }
+        );
         break;
       //
       case "qc":
