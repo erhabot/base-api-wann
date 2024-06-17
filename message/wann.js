@@ -115,7 +115,7 @@ module.exports = async (wann, m) => {
       case "help":
       case "fitur":
         let menu = {
-          main: ["help", "remini", "ai", "quickchat", "ttp"],
+          main: ["help", "remini", "ai", "quickchat", "ssweb", "ttp"],
           islami: [
             "jadwalshalat",
             "niatshalat",
@@ -129,6 +129,7 @@ module.exports = async (wann, m) => {
           other: [
             "jadwalbola",
             "infogempa",
+            "googleimage",
             "wikimedia",
             "covidworld",
             "covidindo",
@@ -321,7 +322,7 @@ module.exports = async (wann, m) => {
         var response = await rh.googleImage(q);
         var data = response.result;
         var tampung = await shuffle(data, 5); // Mau ambil 5 saja
-        if (!tampung) return reply("Result not found !");
+        if (!tampung) return reply(mess.error.api);
         await wann.sendMessage(
           from,
           { image: { url: tampung[0] } },
@@ -351,7 +352,19 @@ module.exports = async (wann, m) => {
           { image: { url: tampung[4] } },
           { quoted: m }
         );
-        await sleep(1000);
+        break;
+      case "ssweb":
+        if (!q) return reply(`Contoh: ${prefix + command} https://erhabot.com`);
+        if (!/^https?:\/\//.test(q))
+          return reply(
+            `Harus https\n\nContoh: ${prefix + command} https://erhabot.com`
+          );
+        var data = await rh.ssweb(q);
+        await wann.sendMessage(
+          from,
+          { image: { url: data.result.link }, caption: q },
+          { quoted: m }
+        );
         break;
       case "ttp":
         if (!q) return reply(`Contoh: ${prefix + command} ${botName}`);
