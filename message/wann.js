@@ -300,7 +300,7 @@ module.exports = async (wann, m) => {
       case "tt":
       case "ttdl":
         if (!q) return reply(`Contoh: ${prefix + command} https://vt.tiktok.com/ZSeCw9xb2/`);
-        await rh.tiktok(q).then((res) => {
+        await rh.tiktok(q).then(async (res) => {
           reply(mess.wait);
           let caption = `${res.result.title}\n`;
           caption += `${res.result.author}`;
