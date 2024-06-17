@@ -124,7 +124,7 @@ module.exports = async (wann, m) => {
             "hadist",
             "kisahnabi",
           ],
-          unduh: ["tiktok", "igstory", "threads", "pinterest"],
+          unduh: ["tiktok", "igstory", "threads", "mediafire"],
           owner: ["runtime", "eval", "exec"],
           other: [
             "jadwalbola",
@@ -140,6 +140,7 @@ module.exports = async (wann, m) => {
             "stylelogo",
             "waterlogo",
             "styletext",
+            "pinterest",
           ],
         };
         let teksMenu = `Halo kak @${
@@ -572,6 +573,43 @@ module.exports = async (wann, m) => {
           { image: { url: tampung[4] } },
           { quoted: m }
         );
+        break;
+      case "mediafire":
+        if (!q)
+          return reply(
+            `Contoh: ${
+              prefix + command
+            } https://www.mediafire.com/file/1u2jcb48a3bzfag/RH-BOT.pdf/file`
+          );
+        if (!/https?:\/\/(www\.)?mediafire\.com/.test(q))
+          return reply(
+            `Contoh: ${
+              prefix + command
+            } https://www.mediafire.com/file/1u2jcb48a3bzfag/RH-BOT.pdf/file`
+          );
+        var data = await rh.mediafireDl(q);
+        var url = data.result.url;
+        var url2 = data.result.url2;
+        var mimetype = "application/" + data.result.ext.toLowerCase();
+        var fileName = data.result.filename;
+        try {
+          if (url) {
+            await wann.sendMessage(
+              from,
+              { document: { url }, mimetype, fileName },
+              { quoted: m }
+            );
+          } else {
+            await wann.sendMessage(
+              from,
+              { document: { url: url2 }, mimetype, fileName },
+              { quoted: m }
+            );
+          }
+        } catch (err) {
+          console.error(chalk.redBright("Error:"), err);
+          return reply(mess.error.api);
+        }
         break;
       //
       case "qc":
