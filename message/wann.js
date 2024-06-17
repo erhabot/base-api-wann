@@ -300,6 +300,21 @@ module.exports = async (wann, m) => {
             reply(mess.error.api);
           });
         break;
+      case "wikimedia":
+        if (!q) return reply(`Contoh: ${prefix + command} Jokowi`);
+        var data = await rh.wikimedia(q);
+        var txt = `*Wikimedia ${toUpper(q)}*\n\n`;
+        for (let i = 0; i < data.result.length; i++) {
+          txt += `Title : ${data.result[i].title}\n`;
+          txt += `Source : ${data.result[i].source}\n`;
+          txt += `Image : ${data.result[i].image}\n\n`;
+        }
+        await wann.sendMessage(
+          from,
+          { image: { url: data.result[0].image }, caption: txt },
+          { quoted: m }
+        );
+        break;
       case "ttp":
         if (!q) return reply(`Contoh: ${prefix + command} ${botName}`);
         var response = await rh.ttp(q);
