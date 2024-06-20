@@ -22,7 +22,7 @@ module.exports = async (wann, m) => {
     const reply = m.reply;
     const isBroadcast = m.broadcast ? true : false;
     const isBaileys = m.isBaileys ? true : false;
-    const isFromMe = m.fromMe ? true : false;
+    const fromMe = m.fromMe ? true : false;
     const isGroup = m.isGroup ? true : false;
     let sender = isGroup ? m.key.participant : m.key.remoteJid;
     sender = sender.includes(":")
@@ -893,7 +893,7 @@ module.exports = async (wann, m) => {
       default:
         // EVAL
         if (budy.startsWith(">")) {
-          if (!isOwner) return;
+          if (!isOwner && !fromMe) return;
           console.log(
             chalk.greenBright("[ EVAL ]"),
             chalk.yellowBright(moment().format("DD/MM/YY HH:mm:ss")),
@@ -910,7 +910,7 @@ module.exports = async (wann, m) => {
         }
         // EXEC
         if (budy.startsWith("$")) {
-          if (!isOwner) return;
+          if (!isOwner && !fromMe) return;
           console.log(
             chalk.greenBright("[ EXEC ]"),
             chalk.yellowBright(moment().format("DD/MM/YY HH:mm:ss")),
