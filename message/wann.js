@@ -361,9 +361,9 @@ module.exports = async (wann, m) => {
             `Harus https\n\nContoh: ${prefix + command} https://erhabot.com`
           );
         var data = await rh.ssweb(q);
-        await wann.sendMessage(
+		await wann.sendMessage(
           from,
-          { image: { url: data.result.link }, caption: q },
+          { image: { url: data.result.url }, caption: q },
           { quoted: m }
         );
         break;
