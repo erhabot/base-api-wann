@@ -303,6 +303,17 @@ module.exports = async (wann, m) => {
             reply(mess.error.api);
           });
         break;
+      case "pantun":
+        await rh
+          .pantun()
+          .then((res) => {
+            reply(res.result.data.trim());
+          })
+          .catch((err) => {
+            console.error(chalk.redBright("Error:"), err);
+            reply(mess.error.api);
+          });
+        break;
       case "wikimedia":
         if (!q) return reply(`Contoh: ${prefix + command} Jokowi`);
         var data = await rh.wikimedia(q);
@@ -361,7 +372,7 @@ module.exports = async (wann, m) => {
             `Harus https\n\nContoh: ${prefix + command} https://erhabot.com`
           );
         var data = await rh.ssweb(q);
-		await wann.sendMessage(
+        await wann.sendMessage(
           from,
           { image: { url: data.result.url }, caption: q },
           { quoted: m }
